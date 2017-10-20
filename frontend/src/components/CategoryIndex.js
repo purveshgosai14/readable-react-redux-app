@@ -13,6 +13,14 @@ class CategoryIndex extends Component {
                         <Link to='/'>Readable</Link>
                     </h1>
                 </div>
+                <ul className="nav nav-pills ">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/" >
+                            All
+                        </Link>
+                    </li>
+                    {this.renderCategories()}
+                </ul>
             </div>
         );
     }
