@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getAllCategories } from '../actions/CategoryAction';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import './Main.css.css';
+import './Main.css';
 
 class CategoryIndex extends Component {
     componentDidMount() {
