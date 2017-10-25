@@ -1,0 +1,114 @@
+.Header {
+    background-color: #000000;
+    box-shadow: 0 2px 4px #fff;
+    display: flex;
+}
+
+.left-readable {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1;
+    padding-bottom: 1rem;
+}
+
+.left-readable a {
+    color: #fff;
+    text-decoration: none;
+    padding-left: 4rem;
+    font-size: 2rem;
+}
+
+.left-readable a:hover {
+    color: orange;
+}
+
+.all-categories{
+    width:35%;
+}
+
+.author {
+    color: #FC6620;
+}
+
+.label-info{
+    background-color: indianred;
+}
+
+.nav.nav-pills a{
+    color: #fff;
+    font-family: monospace;
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+.circle-button{
+    font-size: 4rem;
+    color: #fc6620;
+}
+
+.newPost, .sort-by{
+    color: maroon !important;
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+.all-buttons{
+    padding-top: 1rem;
+
+}
+
+.fa.fa-thumbs-up, .fa.fa-thumbs-down{
+    cursor: pointer;
+    color: #fc6620;
+}
+
+label {
+    font: normal 1.5rem "Eras Medium ITC" !important;
+    padding-top: 1rem;
+}
+
+.text-error{
+    color: red;
+}
+
+.btn {
+    color: #fff !important;
+    font-size: 1rem;
+    font-family: monospace ;
+}
+
+.row-icon i{
+    padding-right: 0.5rem;
+}
+
+.all-buttons i{
+    padding-right: 1rem;
+}
+
+.author-class{
+    padding-bottom: 1rem;
+}
+
+.body-message {
+    padding: 1rem 0 0.5rem 1.5rem;
+    font-size: 1.2rem;
+}
+
+.vote-score{
+    color: blue;
+}
+
+.fa.fa-close{
+    float: right;
+}
+
+.select-menu{
+    position: relative;
+    display: inline-block;
+    color: #fc6620;
+    font-size: 1.5rem;
+}
+.delete-button{
+    cursor: pointer;
+}
