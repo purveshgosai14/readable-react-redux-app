@@ -3,9 +3,7 @@ import {DeletePost, GetCategoryPost} from "../actions/Index";
 import {GetPosts} from "../actions/Index";
 import {GetPost} from "../actions/Index";
 
-const initialState = {};
-
-export default function(state = initialState, action) {
+export default function(state={} , action) {
     switch(action.type) {
         case DeletePost:
             return _.omit(state, action.payload);
