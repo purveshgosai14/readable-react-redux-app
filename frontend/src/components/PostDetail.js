@@ -8,6 +8,7 @@ import Comment from './Comment';
 import CommentBox from './CommentMain';
 import { getComments, deleteComment } from '../actions/CommentAction';
 import { getPost, deletePost } from '../actions/PostAction';
+import NotFound from './NotFound'
 
 class PostDetail extends Component {
     componentDidMount() {
@@ -43,7 +44,7 @@ class PostDetail extends Component {
         const { post } = this.props;
 
         if (!post) {
-            return <div>Loading...</div>
+            return <NotFound />
         }
 
         const { id, title, body, author, timestamp, category, voteScore } = post;
