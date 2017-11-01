@@ -30,8 +30,8 @@ class Post extends Component {
 
     onDeletePost(id) {
         this.props.deletePost(id, () => {
-            this.props.history.push('/posts');
-        });
+            this.props.updateStatus(true)
+        })
     }
 
     componentWillMount(){
