@@ -10,9 +10,11 @@ export default function(state={} , action) {
         case GetPosts:
             return _.mapKeys(action.payload.data, 'id');
         case GetPost:
-            return { ...state, [action.payload.data.id]: action.payload.data};
+            if(action.payload.data !== undefined) {
+                return {...state, [action.payload.data.id]: action.payload.data}
+            }
+            break;
         case GetCategoryPost:
-            console.log(action.payload.data)
             return _.mapKeys(action.payload.data, 'id');
         default:
             return state;

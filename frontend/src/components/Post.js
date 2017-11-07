@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import {getPosts, deletePost} from '../actions/PostAction';
+import {getPost, getPosts, deletePost} from '../actions/PostAction';
 import { upVote, downVote, } from '../actions/VoteAction';
 import { getComments } from '../actions/CommentAction';
 import _ from 'lodash';
@@ -18,19 +18,21 @@ class Post extends Component {
 
     onUpVote(id) {
         this.props.upVote(id, () => {
-            this.props.getPosts();
+            this.props.getPost(id);
         });
     }
 
     onDownVote(id) {
         this.props.downVote(id, () => {
-            this.props.getPosts();
+            this.props.getPost(id);
         });
     }
 
     onDeletePost(id) {
         this.props.deletePost(id, () => {
-            this.props.updateStatus(true)
+            if(this.props.updateStatus !== undefined ) {
+                this.props.updateStatus(true)
+            }
         })
     }
 
@@ -106,4 +108,4 @@ class Post extends Component {
     }
 }
 
-export default connect(null, { upVote, downVote, getPosts, deletePost, getComments })(Post);
+export default connect(null, { getPost, upVote, downVote, getPosts, deletePost, getComments })(Post);

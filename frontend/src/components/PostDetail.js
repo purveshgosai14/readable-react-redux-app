@@ -9,12 +9,25 @@ import CommentBox from './CommentMain';
 import { getComments, deleteComment } from '../actions/CommentAction';
 import { getPost, deletePost } from '../actions/PostAction';
 import NotFound from './NotFound'
+import { getAllCategories } from '../actions/CategoryAction';
 
 class PostDetail extends Component {
+
+    constructor(props){
+        super(props);
+        this.state ={
+            deleted : false
+        }
+    }
     componentDidMount() {
-        const {id} = this.props.match.params;
-        this.props.getPost(id);
-        this.props.getComments(id);
+        const {id, category} = this.props.match.params;
+        this.props.getAllCategories().then((res)=>{
+            if(res.payload.data.categories.findIndex(obj => obj.name === category) !== -1){
+                this.props.getPost(id);
+                this.props.getComments(id);
+            }
+        })
+
     }
 
     renderComments(category) {
@@ -40,9 +53,17 @@ class PostDetail extends Component {
         });
     }
 
+    updateStatus(status){
+        this.setState({deleted : status})
+    }
+
     render() {
         const { post } = this.props;
+        const { deleted } = this.state;
 
+        if(deleted){
+            return <h2>No post found, please <Link to="/">click here </Link>to go back!</h2>
+        }
         if (!post) {
             return <NotFound />
         }
@@ -66,6 +87,7 @@ class PostDetail extends Component {
                         voteScore={voteScore}
                         isDetail={true}
                         comments={_.size(this.props.comments)}
+                        updateStatus={this.updateStatus.bind(this)}
                     />
                     <div>
                         <CommentBox post_id={id} history={this.props.history}/>
@@ -87,4 +109,4 @@ function mapStateToProps({ posts, comments }, ownProps) {
     };
 }
 
-export default connect(mapStateToProps, { getPost, deletePost, getComments, deleteComment })(PostDetail);
+export default connect(mapStateToProps, { getPost, deletePost, getComments, deleteComment,getAllCategories  })(PostDetail);
