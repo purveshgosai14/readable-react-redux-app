@@ -8,6 +8,7 @@ import PostEdit from './components/PostEdit';
 import CategoryIndex from './components/CategoryIndex';
 import CategoryPost from './components/CategoryPosts';
 import CommentEdit from './components/CommentEdit';
+import NotFound from './components/NotFound'
 
 class App extends Component {
     render() {
@@ -18,12 +19,13 @@ class App extends Component {
                 </div>
                 <hr />
                 <Switch>
-                    <Route path="/:category/:id/comments/:commentid/edit" component={CommentEdit}></Route>
-                    <Route path="/:category/:id/edit" component={PostEdit}></Route>
-                    <Route path="/:category/:id" component={PostDetail}></Route>
-                    <Route path="/posts" component={PostNew} ></Route>
-                    <Route path="/:category" component={CategoryPost} ></Route>
+                    <Route exact path="/:category/:id/comments/:commentid/edit" component={CommentEdit}></Route>
+                    <Route exact path="/:category/:id/edit" component={PostEdit}></Route>
+                    <Route exact path="/:category/:id" component={PostDetail}></Route>
+                    <Route exact path="/posts" component={PostNew} ></Route>
+                    <Route exact path="/:category" component={CategoryPost} ></Route>
                     <Route path="/" component={PostIndex}></Route>
+                    <Route component= {NotFound}/>
                 </Switch>
             </div>
         );
