@@ -4,18 +4,32 @@ import { connect } from 'react-redux';
 import { getCategoryPost } from '../actions/PostAction';
 import { Link } from 'react-router-dom';
 import Post from './Post';
+import { getAllCategories } from '../actions/CategoryAction';
+import NotFound from './NotFound'
 
 class CategoryPosts extends Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            categoryFound : false
+        }
+    }
     componentDidMount() {
         const {category} = this.props.match.params;
         this.props.getCategoryPost(category);
     }
 
     componentWillReceiveProps(nextProps){
-
+        const {category} = this.props.match.params;
         if (this.props.match.params.category !== nextProps.match.params.category) {
             this.props.getCategoryPost(nextProps.match.params.category);
         }
+        this.props.getAllCategories().then((res)=>{
+            if(res.payload.data.categories.findIndex(obj => obj.name === category) !== -1){
+
+                this.setState({categoryFound: true})
+            }
+        })
     }
 
     renderPosts() {
@@ -30,6 +44,9 @@ class CategoryPosts extends Component {
     }
 
     render() {
+        if (!this.state.categoryFound) {
+            return <NotFound />
+        }
         return (
             <div>
                 <div>
@@ -55,4 +72,4 @@ function mapStateToProps({ posts }) {
     }
 }
 
-export default connect(mapStateToProps, { getCategoryPost })(CategoryPosts);
+export default connect(mapStateToProps, { getCategoryPost, getAllCategories })(CategoryPosts);
